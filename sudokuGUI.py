@@ -121,7 +121,7 @@ def new_game():
 
     if NUMBER_INITIAL_VALUES < 17 or NUMBER_INITIAL_VALUES > 81:
         messagebox.showwarning(
-            'Warning', 'Hints should be between 17 and 81.'
+            'Warning', 'Clues should be between 17 and 81.'
         )
         return None
 
@@ -161,10 +161,10 @@ def update_level(level):
 
 def choose_level(x):
     if x < 40:
-        return f'Hints:\nHard'
+        return f'Clues:\nHard'
     if x < 70:
-        return f'Hints:\nMedium'
-    return f'Hints:\nEasy'
+        return f'Clues:\nMedium'
+    return f'Clues:\nEasy'
 
 
 if __name__ == '__main__':
