@@ -34,9 +34,11 @@ class SudokuGame:
         # print('Iniciando a classe SudokuGame')
         self.master = master
         self.score = 0
+        self.partial = 0
 
         self.board = [['?' for _ in range(9)] for _ in range(9)]
         self.solution = self.board
+        self.checked = []
 
         self.create_widgets()
         clock()
@@ -68,6 +70,8 @@ class SudokuGame:
                 self.entries[i][j].bind(
                     '<Leave>', lambda x, box=self.entries[i][j]: box.config(
                         bg='white'))
+                # self.entries[i][j].bind(
+                #     "<FocusOut>", lambda x, i=i, j=j: on_focus_out(x, i, j))
 
                 # insert gap between 3x3 blocks
                 if j == 2 or j == 5:
@@ -97,17 +101,23 @@ class SudokuGame:
 
 def check_game():
     global clock_on
+    valid_game = True
     for i in range(9):
         for j in range(9):
             value = app.entries[i][j].get()
-            if len(value) != 1 or not value.isdigit():
-                messagebox.showwarning(
-                    'Not yet!',
-                    'Fill the entire grid with numbers from 1 to 9.'
-                )
-                return False
-            else:
+            if value == str(app.solution[i][j]) and app.board[i][j] == 0:
                 app.board[i][j] = int(value)
+                app.partial += 1
+            if len(value) != 1 or not value.isdigit():
+                valid_game = False
+                # return False
+
+    if not valid_game:
+        messagebox.showwarning(
+            'Not yet!',
+            f'Fill the entire grid with numbers from 1 to 9.\nCorrect entries: {app.partial}.'
+        )
+        return False
 
     if app.board == app.solution:
         clock_on = False
@@ -121,12 +131,13 @@ def check_game():
         )
     else:
         messagebox.showwarning(
-            'Not yet!', 'Verify the numbers.'
+            'Not yet!', f'Verify the numbers.\nCorrect entries: {app.partial}.'
         )
 
 
 def new_game():
     app.frame.destroy()
+    app.partial = 0
 
     global game_time, clock_on
     game_time = 0
@@ -181,6 +192,18 @@ def choose_level(x):
     if x < 70:
         return f'Clues:\nMedium'
     return f'Clues:\nEasy'
+
+
+def on_focus_out(event, i, j):
+    value = app.entries[i][j].get()
+    print(f"O valor digitado na entrada {i},{j} foi: {value}.")
+    if str(app.solution[i][j]) == value and [i, j] not in app.checked:
+        app.checked.append([i, j])
+        app.partial += 1
+    if str(app.solution[i][j]) != value and [i, j] in app.checked:
+        app.partial -= 1
+        # app.entries[i][j].config(state=tk.DISABLED)
+    print(f'Partial: {app.partial}')
 
 
 if __name__ == '__main__':
