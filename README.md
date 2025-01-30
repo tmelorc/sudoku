@@ -2,7 +2,7 @@
 
 ## How to use
 
-Download the Python files (`sudokuGUI.py`, `sudokugenerator.py` and `sudokupdf.py`). 
+Download the Python files (`sudokuGUI.py`, `sudoku_generator.py`, `pdf_generator.py` and `pdf_dialog_window.py`). 
 
 Give execution permission to `sudokuGUI.py` with `chmod +x sudokuGUI.py` and execute it as `./sudokuGUI.py`. 
 
@@ -29,6 +29,6 @@ When you finish filling the empty cells and press the `Check Game` button, if yo
 
 ### PDF
 
-If the necessary Python module is installed, you can generate PDF files with the Sudoku grid. Press the `PDF` button and look for the files `sudoku-original.pdf` and `sudoku-solution.pdf` in the current directory.
+If the necessary Python module is installed, you can generate PDF files with the Sudoku grid. Press the `PDF` button and choose the PDF options as you wish. After, look for pdf files in the current directory.
 
 ![PDF Version](screenshot-pdf.png)

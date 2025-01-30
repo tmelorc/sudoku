@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from tkinter import *
 # from tkinter.ttk import Combobox
 from pdf_generator import *
-from sudokugenerator import sudokuGenerator
+from sudoku_generator import sudokuGenerator
 
 
 class DialogWindow(tk.Toplevel):

@@ -20,7 +20,7 @@
 
 import tkinter as tk
 from tkinter import messagebox
-from sudokugenerator import sudokuGenerator
+from sudoku_generator import sudokuGenerator
 from pdf_dialog_window import DialogWindow
 try:
     from pdf_generator import export_pdf_multipage, export_pdf_singlepage

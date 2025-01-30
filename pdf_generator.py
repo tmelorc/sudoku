@@ -65,7 +65,7 @@ def export_pdf_multipage(num_pages, per_pages, clues=17, output_file='sudoku.pdf
         from reportlab.lib.units import cm
         from reportlab.pdfbase import pdfmetrics
         from reportlab.pdfbase.ttfonts import TTFont
-        from sudokugenerator import sudokuGenerator
+        from sudoku_generator import sudokuGenerator
 
         pdfmetrics.registerFont(
             TTFont('NumbersFont',
