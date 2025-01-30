@@ -21,12 +21,14 @@
 import tkinter as tk
 from tkinter import messagebox
 from sudokugenerator import sudokuGenerator
+from pdf_dialog_window import DialogWindow
 try:
-    from sudokupdf import save_pdf
-    export_pdf = True
+    from pdf_generator import export_pdf_multipage, export_pdf_singlepage
+    from pdf_dialog_window import *
+    # export_pdf = True
 except ImportError:
     print('Export PDF not allowed. Install reportlab first.')
-    export_pdf = False
+    # export_pdf = False
 
 
 class SudokuGame:
@@ -97,6 +99,25 @@ class SudokuGame:
             next_i = i if j < 8 else i+1
             next_j = (j+1) % 9
             root.after(10, self.desativar_entries, next_i, next_j)
+
+
+def open_dialog(parent):
+    dialog = DialogWindow(parent, export_data)
+    dialog.grab_set()
+    dialog.focus_set()
+    parent.wait_window(dialog)
+
+
+def export_data(tipo, num_pages, per_pages):
+    print(f"Dados exportados: {tipo}, {num_pages}, {per_pages}")
+    # implementar aqui a função que gera o pdf baseado nos valores passados
+    if tipo == 'single':
+        export_pdf_singlepage(
+            app.board, output_file='sudoku-original.pdf')
+        export_pdf_singlepage(app.solution, output_file='sudoku-solution.pdf')
+    if tipo == 'multi':
+        export_pdf_multipage(num_pages, per_pages,
+                             output_file='sudoku-multi-page.pdf')
 
 
 def check_game():
@@ -173,8 +194,8 @@ def clock():
 
 def save_all_pdf():
     if export_pdf:
-        save_pdf(app.board, output_file='sudoku-original.pdf')
-        save_pdf(app.solution, output_file='sudoku-solution.pdf')
+        export_pdf_singlepage(app.board, output_file='sudoku-original.pdf')
+        export_pdf_singlepage(app.solution, output_file='sudoku-solution.pdf')
     else:
         print('Export PDF version not allowed. Install reportlab first.')
         messagebox.showwarning("Warning!",
@@ -238,6 +259,9 @@ if __name__ == '__main__':
     SCORE = tk.StringVar()
     SCORE.set(f'Score: {0}')
 
+    # Export PDF Settings
+    # export_pdf_settings = {}
+
     # Top Frame items
     #
     # Label (hints)
@@ -288,7 +312,7 @@ if __name__ == '__main__':
     pdf_button = tk.Button(top_frame,
                            text='PDF',
                            font=('Helvetica', 16),
-                           command=save_all_pdf,
+                           command=lambda: open_dialog(root),
                            bg='#666666', fg='#ffffff',
                            activebackground='RoyalBlue3',
                            activeforeground='black'
