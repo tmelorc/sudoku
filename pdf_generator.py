@@ -118,6 +118,7 @@ def export_pdf_multipage(num_pages, per_pages, clues=17, output_file='sudoku.pdf
 
         rows = {1: 1, 2: 2, 4: 2}
         cols = {1: 1, 2: 1, 4: 2}
+
         for _ in range(num_pages):
             pdf.translate(1*cm, 3*cm)
             for i in range(rows[per_pages]):
@@ -125,7 +126,7 @@ def export_pdf_multipage(num_pages, per_pages, clues=17, output_file='sudoku.pdf
                     clues = random.randint(17, 60)
                     grid = sudokuGenerator(81 - clues)[0]
 
-                    # TODO:  ajustar offset de acordo com o per_pages
+                    # TODO: use per_pages to adjust offset to always centers the grids
                     draw_lines(offset=(i*10*cm, j*12*cm))
                     write_numbers(grid, offset=(i*10*cm, j*12*cm))
             pdf.showPage()
@@ -137,4 +138,4 @@ def export_pdf_multipage(num_pages, per_pages, clues=17, output_file='sudoku.pdf
 
 
 if __name__ == '__main__':
-    export_pdf_multipage(10)
+    export_pdf_multipage(2, 4)

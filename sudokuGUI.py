@@ -109,8 +109,6 @@ def open_dialog(parent):
 
 
 def export_data(tipo, num_pages, per_pages):
-    print(f"Dados exportados: {tipo}, {num_pages}, {per_pages}")
-    # implementar aqui a função que gera o pdf baseado nos valores passados
     if tipo == 'single':
         export_pdf_singlepage(
             app.board, output_file='sudoku-original.pdf')
@@ -192,15 +190,16 @@ def clock():
     label_time.after(1000, clock)
 
 
-def save_all_pdf():
-    if export_pdf:
-        export_pdf_singlepage(app.board, output_file='sudoku-original.pdf')
-        export_pdf_singlepage(app.solution, output_file='sudoku-solution.pdf')
-    else:
-        print('Export PDF version not allowed. Install reportlab first.')
-        messagebox.showwarning("Warning!",
-                               "PDF version not allowed. \
-                               Install reportlab first.")
+# obsolete
+# def save_all_pdf():
+#     if export_pdf:
+#         export_pdf_singlepage(app.board, output_file='sudoku-original.pdf')
+#         export_pdf_singlepage(app.solution, output_file='sudoku-solution.pdf')
+#     else:
+#         print('Export PDF version not allowed. Install reportlab first.')
+#         messagebox.showwarning("Warning!",
+#                                "PDF version not allowed. \
+#                                Install reportlab first.")
 
 
 def update_level(level):
@@ -258,9 +257,6 @@ if __name__ == '__main__':
     # Score variable
     SCORE = tk.StringVar()
     SCORE.set(f'Score: {0}')
-
-    # Export PDF Settings
-    # export_pdf_settings = {}
 
     # Top Frame items
     #

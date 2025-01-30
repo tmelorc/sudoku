@@ -13,26 +13,17 @@ class DialogWindow(tk.Toplevel):
         self.geometry('400x200')
         self.export_function = export_function
 
-        # main_font = ('Helvetica', 14)
-        # self.option_add("*Font", main_font)
-
         self.selected_option = tk.StringVar(value='single')
-        # self.num_pages = tk.StringVar()
-        # self.per_pages = tk.IntVar()
 
         self.create_widgets()
 
     def create_widgets(self):
-
-        # # Cria um estilo para o LabelFrame
-        # style = ttk.Style()
-        # style.configure('My.TLabelframe', font=('Helvetica', 16))
-
+        # Top Frame
         top_frame = ttk.LabelFrame(self, text="PDF Options")
         top_frame.pack(padx=10, pady=10)
         top_frame.configure(borderwidth=2)
 
-        # Radio buttons
+        # Radio Buttons
         single_radio = ttk.Radiobutton(
             top_frame, text='Single-page', variable=self.selected_option, value='single')
         multipage_radio = ttk.Radiobutton(
@@ -66,19 +57,9 @@ class DialogWindow(tk.Toplevel):
         selected_option = self.selected_option.get()
         num_pages = int(self.num_pages_entry.get())
         per_pages = int(self.per_pages_combo.get())
-        print(f"Tipo:: {selected_option}")
-        print(f"Páginas: {num_pages}")
-        print(f"Por páginas: {per_pages}")
         self.export_function(selected_option, num_pages, per_pages)
-        # self.destroy()
+        self.destroy()
 
 
 if __name__ == '__main__':
-    root = tk.Tk()
-
-    def foo(a, b, c):
-        print(a, b, c)
-
-    diag = DialogWindow(root, foo)
-
-    diag.mainloop()
+    None
