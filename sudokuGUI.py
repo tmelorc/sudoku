@@ -108,13 +108,13 @@ def open_dialog(parent):
     parent.wait_window(dialog)
 
 
-def export_data(tipo, num_pages, per_pages):
+def export_data(tipo, num_pages, per_pages, hints_min, hints_max):
     if tipo == 'single':
         export_pdf_singlepage(
             app.board, output_file='sudoku-original.pdf')
         export_pdf_singlepage(app.solution, output_file='sudoku-solution.pdf')
     if tipo == 'multi':
-        export_pdf_multipage(num_pages, per_pages,
+        export_pdf_multipage(num_pages, per_pages, hints_min, hints_max,
                              output_file='sudoku-multi-page.pdf')
 
 

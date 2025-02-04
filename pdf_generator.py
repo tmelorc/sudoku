@@ -59,7 +59,7 @@ def export_pdf_singlepage(grid, output_file='sudoku-original.pdf'):
         print('Export PDF version not allowed. Install reportlab first.')
 
 
-def export_pdf_multipage(num_pages, per_pages, clues=17, output_file='sudoku.pdf'):
+def export_pdf_multipage(num_pages, per_pages, clues_min, clues_max, output_file='sudoku.pdf'):
     try:
         from reportlab.pdfgen import canvas
         from reportlab.lib.units import cm
@@ -123,7 +123,7 @@ def export_pdf_multipage(num_pages, per_pages, clues=17, output_file='sudoku.pdf
             pdf.translate(1*cm, 3*cm)
             for i in range(rows[per_pages]):
                 for j in range(cols[per_pages]):
-                    clues = random.randint(17, 60)
+                    clues = random.randint(clues_min, clues_max)
                     grid = sudokuGenerator(81 - clues)[0]
 
                     # TODO: use per_pages to adjust offset to always centers the grids
@@ -138,4 +138,4 @@ def export_pdf_multipage(num_pages, per_pages, clues=17, output_file='sudoku.pdf
 
 
 if __name__ == '__main__':
-    export_pdf_multipage(2, 4)
+    export_pdf_multipage(2, 4, 78, 80)
