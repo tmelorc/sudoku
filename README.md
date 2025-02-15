@@ -2,13 +2,18 @@
 
 ## How to use
 
-Download the Python files (`sudokuGUI.py`, `sudoku_generator.py`, `pdf_generator.py` and `pdf_dialog_window.py`). 
+Download the Python files (`sudokuGUI.py`, `sudoku_generator.py`, `pdf_generator.py` and `pdf_dialog_window.py`).
 
-Give execution permission to `sudokuGUI.py` with `chmod +x sudokuGUI.py` and execute it as `./sudokuGUI.py`. 
+Give execution permission to `sudokuGUI.py` with `chmod +x sudokuGUI.py` and execute it as `./sudokuGUI.py`.
 
 Alternatively, you can run `python3 sudokuGUI.py`.
 
+### Linux binary
+
+You can download the binary file for Linux from Google Drive here: (https://drive.google.com/file/d/1F7RXNPbONjZmLt7uXGSoA55cwl8vrzuE/view?usp=sharing)
+
 ## The main window
+
 ![Main Window Screenshot](screenshot.png)
 
 ### Clues
@@ -21,7 +26,7 @@ After choosing the number of clues, click the `New Game` button to start the gam
 
 ### Check Game
 
-Use this button to verify your game. A feedback message will appear. 
+Use this button to verify your game. A feedback message will appear.
 
 ### Score
 
